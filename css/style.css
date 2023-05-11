@@ -1,0 +1,40 @@
+html,
+body {
+  color: #dfdfdf;
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  color: #001747;
+  font-size: 5rem;
+  text-align: center;
+  font-family: "Henny Penny", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Wix Madefor Display", sans-serif;
+}
+
+h2 {
+  color: #b0b0b0;
+  text-align: center;
+  font-family: "Henny Penny", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Wix Madefor Display", sans-serif;
+}
+
+p {
+  color: #b0b0b0;
+  text-align: center;
+  margin: 5rem 20rem;
+  font-family: "Henny Penny", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Wix Madefor Display", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #b0b0b0;
+  font-family: "Henny Penny", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Wix Madefor Display", sans-serif;
+}
