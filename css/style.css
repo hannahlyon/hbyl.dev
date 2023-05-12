@@ -40,6 +40,8 @@ p {
 
 a {
   text-decoration: none;
+  display: block;
+  text-align: center;
   color: #b0b0b0;
   font-family: "Henny Penny", cursive;
   font-family: "Open Sans", sans-serif;
