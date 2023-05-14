@@ -33,6 +33,10 @@ p {
   color: #b0b0b0;
   text-align: center;
   margin: 3rem 20rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 12em;
   font-family: "Henny Penny", cursive;
   font-family: "Open Sans", sans-serif;
   font-family: "Wix Madefor Display", sans-serif;
@@ -76,4 +80,8 @@ a {
   50% {
     border-color: #001747;
   }
+}
+
+#footer {
+  height: 5em;
 }
