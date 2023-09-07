@@ -21,6 +21,12 @@ h1 {
     blink-caret 0.3s step-end infinite;
 }
 
+@media screen and (max-width: 360px) {
+  h1 {
+    font-size: 1.3rem !important;
+  }
+}
+
 h2 {
   color: #b0b0b0;
   text-align: center;
