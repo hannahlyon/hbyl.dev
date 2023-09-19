@@ -19,35 +19,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>hbyl.dev</title>
     <meta name="description" content="" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Open+Sans:wght@500&family=Wix+Madefor+Display:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
-    <h1>hbyl.dev</h1>
-    <img src="img/profile.png" alt="" id="profile" />
-    <h2>about</h2>
-    <p>
-      hannah is a data scientist with hands on experience with ML building
-      recommender systems and marketing attribution models for retail and
-      e-commerce as well as experience in Python, SQL, AWS, Azure, and GCP
-    </p>
+    <div class="desktop-display">
+      <div id="sidebar">
+        <h1>hannah</h1>
+        <h2>b. y. lyon</h2>
+        <div id="profile-img">
+          <img src="img/profile.png" alt="profile photo" />
+        </div>
+        <div id="description">
+          <p>
+            hannah is a data scientist with hands on experience with ML building
+            recommender systems and marketing attribution models for retail and
+            e-commerce as well as experience in Python, SQL, AWS, Azure, and GCP
+          </p>
+        </div>
+        <div id="links">
+          <a
+            href="https://drive.google.com/file/d/1Pkd-TdCz_TqMX2uCNCpmccypcbdBXMzv/view?usp=sharing"
+            >resumé</a
+          >
+          <br />
+          <a href="mailto:hbylyon1@gmail.com">email</a> <br />
+          <a href="https://www.linkedin.com/in/hannahbylyon/">linkedin</a>
+          <br />
+          <a href="https://github.com/hannahlyon">github</a>
+        </div>
+      </div>
 
-    <h2>
-      <a
-        href="https://drive.google.com/file/d/1Pkd-TdCz_TqMX2uCNCpmccypcbdBXMzv/view?usp=sharing"
-        >resumé</a
-      >
-    </h2>
-    <h2>contact</h2>
-    <a href="mailto:hannah@hbyl.dev">hbylyon1@gmail.com</a>
-    <a href="https://www.linkedin.com/in/hannahbylyon/">linkedin</a>
-    <a href="https://github.com/hannahlyon">github</a>
-    <div id="footer"></div>
+      <div class="projects">
+        <div class="carousel-wrapper">
+          <span id="item-1"></span>
+          <span id="item-2"></span>
+          <span id="item-3"></span>
+          <div class="carousel-item item-1">
+            <!-- <h2>Item 1</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+              accumsan pretium dolor vel convallis. Aliquam erat volutpat.
+              Maecenas lacus nunc, imperdiet sed mi et, finibus suscipit mi.
+            </p> -->
+            <a class="arrow arrow-prev" href="#item-3"></a>
+            <a class="arrow arrow-next" href="#item-2"></a>
+          </div>
+
+          <div class="carousel-item item-2">
+            <a class="arrow arrow-prev" href="#item-1"></a>
+            <a class="arrow arrow-next" href="#item-3"></a>
+          </div>
+
+          <div class="carousel-item item-3">
+            <a class="arrow arrow-prev" href="#item-2"></a>
+            <a class="arrow arrow-next" href="#item-1"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-display">Please view on desktop.</div>
   </body>
 </html>
