@@ -1,6 +1,7 @@
 html,
 body {
   color: #dfdfdf;
+
   height: 100%;
   margin: 0;
 }
@@ -200,6 +201,11 @@ h2:hover {
   }
 }
 
+.mobile-display {
+  background-color: #000000;
+  height: 100%;
+}
+
 .mobile-display h1 {
   font-size: 20vw;
   margin-right: 25px;
@@ -266,95 +272,4 @@ h2:hover {
 
 #mobile-links a:hover {
   color: aquamarine;
-}
-.mobile-projects {
-  width: 100%;
-  height: 85%;
-  float: right;
-  background-color: #ffffff;
-  margin-top: 10%;
-}
-[id^="mobile-item"] {
-  display: none;
-}
-
-.mobile-item-1 {
-  z-index: 2;
-  opacity: 1;
-  background: url("../img/correlation-one.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.mobile-item-2 {
-  background: url("../img/fuzzy-matching.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.mobile-item-3 {
-  background: url("../img/attendance.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-*:target ~ .mobile-item-1 {
-  opacity: 0;
-}
-
-#mobile-item-1:target ~ .mobile-item-1 {
-  opacity: 1;
-}
-
-#mobile-item-2:target ~ .mobile-item-2,
-#mobile-item-3:target ~ .mobile-item-3 {
-  z-index: 3;
-  opacity: 1;
-}
-
-.mobile-carousel-wrapper {
-  height: 600px;
-  position: relative;
-  width: 90%;
-  margin: 0 auto;
-}
-.mobile-carousel-item {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 25px 50px;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.mobile-arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 12px;
-}
-
-.mobile-arrow-prev {
-  left: -10px;
-  position: absolute;
-  top: 20%;
-  transform: translateY(-50%) rotate(135deg);
-}
-
-.mobile-arrow-next {
-  right: -10px;
-  position: absolute;
-  top: 20%;
-  transform: translateY(-50%) rotate(-45deg);
-}
-
-.mobile-light {
-  color: white;
-}
-
-@media (max-width: 480px) {
-  .mobile-arrow,
-  .mobile-light .mobile-arrow {
-    background-size: 10px;
-    background-position: 10px 50%;
-  }
 }
