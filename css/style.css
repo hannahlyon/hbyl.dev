@@ -199,3 +199,162 @@ h2:hover {
     display: block;
   }
 }
+
+.mobile-display h1 {
+  font-size: 20vw;
+  margin-right: 25px;
+}
+
+.mobile-display h2 {
+  font-size: 7vw;
+  margin-right: 25px;
+}
+
+#mobile-sidebar {
+  background-color: rgb(11, 11, 11);
+  color: #ffffff;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  text-align: right;
+  float: left;
+}
+
+#mobile-description {
+  font-size: 10vw;
+  width: 70%;
+  text-align: right;
+  float: right;
+}
+
+#mobile-description p {
+  font-family: smileyOblique;
+  font-size: 4.55vw;
+  margin-right: 25px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  line-height: 150%;
+}
+
+#mobile-description p:hover {
+  color: aquamarine;
+}
+
+#mobile-profile-img {
+  text-align: center;
+}
+
+#mobile-profile-img img {
+  width: 80%;
+}
+
+#mobile-links {
+  width: 70%;
+  text-align: right;
+  float: right;
+}
+
+#mobile-links a {
+  font-family: smileyOblique;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-right: 25px;
+  text-decoration: none;
+  line-height: 250%;
+}
+
+#mobile-links a:hover {
+  color: aquamarine;
+}
+.mobile-projects {
+  width: 100%;
+  height: 85%;
+  float: right;
+  background-color: #ffffff;
+  margin-top: 10%;
+}
+[id^="mobile-item"] {
+  display: none;
+}
+
+.mobile-item-1 {
+  z-index: 2;
+  opacity: 1;
+  background: url("../img/correlation-one.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.mobile-item-2 {
+  background: url("../img/fuzzy-matching.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.mobile-item-3 {
+  background: url("../img/attendance.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+*:target ~ .mobile-item-1 {
+  opacity: 0;
+}
+
+#mobile-item-1:target ~ .mobile-item-1 {
+  opacity: 1;
+}
+
+#mobile-item-2:target ~ .mobile-item-2,
+#mobile-item-3:target ~ .mobile-item-3 {
+  z-index: 3;
+  opacity: 1;
+}
+
+.mobile-carousel-wrapper {
+  height: 600px;
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+.mobile-carousel-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px 50px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.mobile-arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 12px;
+}
+
+.mobile-arrow-prev {
+  left: -10px;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%) rotate(135deg);
+}
+
+.mobile-arrow-next {
+  right: -10px;
+  position: absolute;
+  top: 20%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.mobile-light {
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .arrow,
+  .light .arrow {
+    background-size: 10px;
+    background-position: 10px 50%;
+  }
+}
