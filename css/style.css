@@ -185,7 +185,7 @@ h2:hover {
   opacity: 1;
 }
 
-/* Mobile v. Desktop Displays */
+/* Mobile v. Desktop Displays - https://www.namehero.com/blog/how-to-show-different-content-for-mobile-and-desktop/*/
 .mobile-display {
   display: none;
 }
