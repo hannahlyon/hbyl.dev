@@ -1,110 +1,1523 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-4BH9N7VPMX"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hannah Lyon — AI Native Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --aqua:      #00FFD1;
+      --aqua-dim:  rgba(0,255,209,.18);
+      --aqua-glow: rgba(0,255,209,.45);
+      --trans: .35s cubic-bezier(.4,0,.2,1);
+    }
+    [data-theme="dark"] {
+      --bg:        #080808;
+      --bg2:       #111111;
+      --bg3:       #1a1a1a;
+      --line:      rgba(255,255,255,.09);
+      --fg:        #f0f0f0;
+      --fg2:       #999;
+      --fg3:       #555;
+      --inv-bg:    #f0f0f0;
+      --inv-fg:    #080808;
+    }
+    [data-theme="light"] {
+      --bg:        #f6f6f4;
+      --bg2:       #eeeeec;
+      --bg3:       #e4e4e2;
+      --line:      rgba(0,0,0,.10);
+      --fg:        #0d0d0d;
+      --fg2:       #555;
+      --fg3:       #aaa;
+      --inv-bg:    #0d0d0d;
+      --inv-fg:    #f6f6f4;
+    }
 
-      gtag("config", "G-4BH9N7VPMX");
-    </script>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>hbyl.dev</title>
-    <meta name="description" content="" />
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      transition: background var(--trans), color var(--trans);
+      overflow-x: hidden;
+      cursor: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: none; font-family: inherit; border: none; background: none; }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <div class="desktop-display">
-      <div id="sidebar">
-        <h1>hannah</h1>
-        <h2>b. y. lyon</h2>
-        <div id="profile-img">
-          <img src="img/profile.png" alt="profile photo" />
-        </div>
-        <div id="description">
-          <p>
-            hannah is a data scientist with hands on experience with ML building
-            recommender systems and marketing attribution models for retail and
-            e-commerce as well as experience in Python, SQL, AWS, Azure, and GCP
-          </p>
-        </div>
-        <div id="links">
-          <a
-            href="https://drive.google.com/file/d/1aV6OfW8QjjxHJvEsDY6SLBQTVFG4pSpo/view?usp=drive_link"
-            >resumé</a
-          >
-          <br />
-          <a href="mailto:hbylyon1@gmail.com">email</a> <br />
-          <a href="https://www.linkedin.com/in/hannahbylyon/">linkedin</a>
-          <br />
-          <a href="https://github.com/hannahlyon">github</a>
+    /* ─── CUSTOM CURSOR ──────────────────────────────────────── */
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 10px; height: 10px;
+      background: var(--aqua);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform .15s ease, opacity .2s;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: screen;
+    }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9998;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--aqua);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform .35s ease, width .25s, height .25s, opacity .2s;
+      opacity: .5;
+    }
+    body.cursor-hover #cursor { transform: translate(-50%,-50%) scale(2.5); }
+    body.cursor-hover #cursor-ring { width: 56px; height: 56px; opacity: .25; }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .025;
+      pointer-events: none;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--trans), background var(--trans), backdrop-filter var(--trans);
+    }
+    nav.scrolled {
+      border-color: var(--line);
+      background: rgba(var(--bg-raw, 8,8,8), .72);
+      backdrop-filter: blur(18px);
+    }
+    [data-theme="light"] nav.scrolled { background: rgba(246,246,244,.82); }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .12em;
+      color: var(--fg);
+      transition: color var(--trans);
+    }
+    .nav-logo span { color: var(--aqua); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg2);
+      transition: color var(--trans);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--aqua);
+      transition: width .3s ease;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Theme toggle */
+    #theme-btn {
+      width: 42px; height: 24px;
+      border-radius: 12px;
+      background: var(--bg3);
+      border: 1px solid var(--line);
+      position: relative;
+      transition: background var(--trans);
+      display: flex; align-items: center;
+      padding: 3px;
+    }
+    #theme-btn::before {
+      content: '';
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--aqua);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    [data-theme="light"] #theme-btn::before { transform: translateX(18px); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 7rem 3rem 4rem 2.5rem;
+      border-right: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 2rem; height: 1px;
+      background: var(--aqua);
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 10vw, 10rem);
+      line-height: .92;
+      letter-spacing: -.01em;
+      color: var(--fg);
+      margin-bottom: 2rem;
+    }
+    h1 em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--fg);
+    }
+    [data-theme="light"] h1 em { -webkit-text-stroke: 1px var(--fg); }
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--fg2);
+      max-width: 36ch;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: .75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--aqua);
+      padding: .85rem 1.75rem;
+      transition: box-shadow .25s, transform .2s;
+    }
+    .hero-cta:hover {
+      box-shadow: 0 0 28px var(--aqua-glow);
+      transform: translateY(-2px);
+    }
+    .hero-cta svg { width: 14px; }
+
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 7rem 2.5rem 4rem 3rem;
+      position: relative; z-index: 1;
+    }
+    .hero-stats {
+      display: grid; grid-template-rows: repeat(3, auto);
+      gap: 0;
+    }
+    .stat-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .stat-row:first-child { border-top: 1px solid var(--line); }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--fg3);
+    }
+    .stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: .04em;
+      color: var(--fg);
+    }
+    .stat-val span { color: var(--aqua); font-size: 1rem; }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--fg3); z-index: 2;
+    }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--aqua), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* Background grid lines */
+    .hero-grid-lines {
+      position: absolute; inset: 0; z-index: 0;
+      pointer-events: none;
+    }
+    .hero-grid-lines::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    /* ─── SECTION COMMON ─────────────────────────────────────── */
+    section { position: relative; z-index: 1; }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding: 3.5rem 2.5rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      letter-spacing: .02em;
+      line-height: 1;
+      color: var(--fg);
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    #about { border-bottom: 1px solid var(--line); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-left {
+      padding: 3rem 3rem 3rem 2.5rem;
+      border-right: 1px solid var(--line);
+    }
+    .about-left p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--fg2);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    .about-left p strong { color: var(--fg); font-weight: 500; }
+    .about-right {
+      padding: 3rem 2.5rem 3rem 3rem;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .skill-category { margin-bottom: 2rem; }
+    .skill-cat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--fg3);
+      margin-bottom: .85rem;
+    }
+    .skill-pills {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .pill {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      padding: .35rem .85rem;
+      border: 1px solid var(--line);
+      color: var(--fg2);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .pill:hover {
+      border-color: var(--aqua);
+      color: var(--aqua);
+      background: var(--aqua-dim);
+    }
+
+    /* ─── PROJECTS ───────────────────────────────────────────── */
+    #projects { border-bottom: 1px solid var(--line); }
+    .filter-bar {
+      display: flex; align-items: center; gap: .5rem;
+      padding-right: 2.5rem;
+    }
+    .filter-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--fg3);
+      padding: .4rem .9rem;
+      border: 1px solid transparent;
+      transition: all .2s;
+    }
+    .filter-btn:hover { color: var(--fg); border-color: var(--line); }
+    .filter-btn.active {
+      color: var(--aqua);
+      border-color: var(--aqua);
+      background: var(--aqua-dim);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .project-card {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+      cursor: none;
+    }
+    .project-card:nth-child(3n) { border-right: none; }
+    .project-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--aqua-dim);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-card:hover .proj-arrow { transform: translate(4px, -4px); color: var(--aqua); }
+
+    .proj-num {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .12em;
+      color: var(--fg3);
+      margin-bottom: 1.5rem;
+    }
+    .proj-tag-list {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .proj-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      background: var(--aqua-dim);
+      padding: .2rem .55rem;
+    }
+    .proj-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: .03em;
+      line-height: 1.1;
+      color: var(--fg);
+      margin-bottom: .85rem;
+      position: relative; z-index: 1;
+    }
+    .proj-desc {
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--fg2);
+      margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .proj-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .proj-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      color: var(--fg3);
+    }
+    .proj-arrow {
+      font-size: 1.1rem;
+      color: var(--fg3);
+      transition: transform .25s, color .25s;
+      line-height: 1;
+    }
+
+    /* Hidden / filtered */
+    .project-card[hidden] { display: none; }
+
+    /* ─── MODAL ──────────────────────────────────────────────── */
+    #modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    #modal-overlay.open { opacity: 1; pointer-events: all; }
+    #modal {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      width: 100%; max-width: 860px;
+      max-height: 90svh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    #modal-overlay.open #modal { transform: translateY(0); }
+
+    .modal-close {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: flex-end;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-close-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--fg3);
+      display: flex; align-items: center; gap: .5rem;
+      transition: color .2s;
+    }
+    .modal-close-btn:hover { color: var(--aqua); }
+    .modal-close-btn::before {
+      content: '×';
+      font-size: 1.2rem;
+      font-family: sans-serif;
+    }
+
+    .modal-body { padding: 2.5rem; }
+    .modal-tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem; }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: .02em;
+      line-height: 1;
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+    .modal-subtitle {
+      font-size: 1.05rem;
+      color: var(--fg2);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .modal-divider {
+      height: 1px; background: var(--line);
+      margin: 2rem 0;
+    }
+    .modal-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 1rem;
+    }
+    .modal-body p {
+      font-size: .95rem;
+      line-height: 1.8;
+      color: var(--fg2);
+      margin-bottom: 1rem;
+    }
+    .modal-body ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: .6rem;
+      margin-bottom: 1rem;
+    }
+    .modal-body li {
+      display: flex; gap: .85rem;
+      font-size: .92rem;
+      color: var(--fg2);
+      line-height: 1.6;
+    }
+    .modal-body li::before {
+      content: '→';
+      color: var(--aqua);
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace;
+    }
+    .modal-metrics {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--line);
+      margin-bottom: 2rem;
+    }
+    .metric-box {
+      background: var(--bg2);
+      padding: 1.5rem;
+    }
+    .metric-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--aqua);
+      display: block;
+      letter-spacing: .04em;
+    }
+    .metric-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg3);
+    }
+    .modal-link {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      border: 1px solid var(--aqua);
+      padding: .75rem 1.5rem;
+      transition: background .2s, box-shadow .2s;
+      margin-top: .5rem;
+    }
+    .modal-link:hover {
+      background: var(--aqua-dim);
+      box-shadow: 0 0 20px var(--aqua-glow);
+    }
+
+    /* ─── MODAL IMAGE GALLERY ────────────────────────────────── */
+    .modal-hero-img {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    .modal-hero-img img,
+    .modal-hero-img svg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s cubic-bezier(.4,0,.2,1);
+    }
+    .modal-hero-img:hover img,
+    .modal-hero-img:hover svg { transform: scale(1.03); }
+    .modal-hero-badge {
+      position: absolute; bottom: 1rem; left: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      background: rgba(0,0,0,.72);
+      padding: .35rem .75rem;
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--aqua-dim);
+    }
+
+    .modal-gallery-strip {
+      display: flex;
+      gap: 1px;
+      background: var(--line);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .modal-gallery-strip::-webkit-scrollbar { display: none; }
+
+    .gallery-thumb {
+      flex: 0 0 calc(50% - .5px);
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg3);
+      scroll-snap-align: start;
+      cursor: none;
+    }
+    .gallery-thumb img,
+    .gallery-thumb svg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease, filter .4s;
+      filter: grayscale(20%);
+    }
+    .gallery-thumb:hover img,
+    .gallery-thumb:hover svg {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+    .gallery-thumb-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: .6rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--fg2);
+      background: linear-gradient(transparent, rgba(0,0,0,.7));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    [data-theme="light"] .gallery-thumb-caption {
+      background: linear-gradient(transparent, rgba(0,0,0,.55));
+      color: #eee;
+    }
+    .gallery-thumb:hover .gallery-thumb-caption { opacity: 1; }
+
+    .gallery-scroll-hint {
+      display: flex; align-items: center; gap: .5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg3);
+      padding: .6rem 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .gallery-scroll-hint::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--aqua);
+      flex-shrink: 0;
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    #contact { border-bottom: 1px solid var(--line); }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .contact-left {
+      padding: 3rem 3rem 3rem 2.5rem;
+      border-right: 1px solid var(--line);
+    }
+    .contact-left p {
+      font-size: 1rem; line-height: 1.75;
+      color: var(--fg2); font-weight: 300;
+      max-width: 38ch;
+      margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      color: var(--fg2);
+      transition: color .2s;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-link:hover { color: var(--aqua); }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+      flex-shrink: 0;
+      transition: border-color .2s, background .2s;
+    }
+    .contact-link:hover .contact-link-icon {
+      border-color: var(--aqua);
+      background: var(--aqua-dim);
+    }
+    .contact-right {
+      padding: 3rem 2.5rem 3rem 3rem;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--fg3);
+      margin-bottom: .5rem;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--line);
+      color: var(--fg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      padding: .85rem 1rem;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--aqua);
+      box-shadow: 0 0 0 3px var(--aqua-dim);
+    }
+    .form-textarea { min-height: 130px; }
+    .form-submit {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--aqua);
+      padding: .9rem 2rem;
+      width: 100%;
+      transition: box-shadow .25s, transform .2s;
+    }
+    .form-submit:hover {
+      box-shadow: 0 0 28px var(--aqua-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2.5rem;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .1em;
+      color: var(--fg3);
+    }
+    .footer-copy span { color: var(--aqua); }
+
+    /* ─── REVEAL ANIMATIONS ──────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ─── AQUA GLOW LINE ─────────────────────────────────────── */
+    .glow-line {
+      position: absolute; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--aqua), transparent);
+      opacity: .4;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card:nth-child(3n) { border-right: 1px solid var(--line); }
+      .project-card:nth-child(2n) { border-right: none; }
+    }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      #cursor, #cursor-ring { display: none; }
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a:not(#theme-btn-wrap a) { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 1.5rem 2.5rem; border-right: none; border-bottom: 1px solid var(--line); }
+      .hero-right { padding: 2.5rem 1.5rem; }
+      h1 { font-size: clamp(4rem, 16vw, 7rem); }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2.5rem 1.5rem 1.5rem; }
+      .filter-bar { padding-right: 0; flex-wrap: wrap; }
+      .about-grid, .contact-inner { grid-template-columns: 1fr; }
+      .about-left, .contact-left { border-right: none; border-bottom: 1px solid var(--line); padding: 2rem 1.5rem; }
+      .about-right, .contact-right { padding: 2rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { border-right: none; }
+      .modal-metrics { grid-template-columns: 1fr 1fr; }
+      .modal-body { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Modal -->
+<div id="modal-overlay" role="dialog" aria-modal="true">
+  <div id="modal">
+    <div class="modal-close">
+      <button class="modal-close-btn" id="modal-close-btn">Close</button>
+    </div>
+    <div class="modal-body" id="modal-content"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">HL<span>.</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <button id="theme-btn" aria-label="Toggle theme"></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left">
+    <div class="hero-tag">AI-Native Data Scientist</div>
+    <h1>Hannah<br /><em>Lyon</em></h1>
+    <p class="hero-desc">Machine learning, causal inference, and AI/LLMs — turning messy real-world data into systems that drive measurable impact.</p>
+    <a href="#projects" class="hero-cta">
+      View Work
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M1 7h12M7 1l6 6-6 6"/>
+      </svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-row">
+        <span class="stat-label">Years experience</span>
+        <span class="stat-val">5<span>+</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Companies impacted</span>
+        <span class="stat-val">5<span>+</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Marketing spend saved</span>
+        <span class="stat-val">15<span>%</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">01 — Who I Am</div>
+      <h2 class="section-title">About</h2>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <p>I'm <strong>Hannah Lyon</strong>, an AI-native data scientist based in Florida, USA. I specialize in machine learning, causal inference, and AI/LLMs — translating messy, real-world data into systems that drive impact.</p>
+      <p>My background blends <strong>statistics and software engineering</strong>. Before diving into data science full-time, I studied economics at NYU in Shanghai, where I developed a deep appreciation for data and econometric research.</p>
+      <p>When I'm not wrangling datasets, you'll find me streaming or napping with my dog, Molly. I believe the best data science is done with as much <strong>empathy as it is with code</strong>.</p>
+    </div>
+    <div class="about-right reveal reveal-delay-1">
+      <div class="skill-category">
+        <div class="skill-cat-label">Languages & Libraries</div>
+        <div class="skill-pills">
+          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">HTML/CSS/JS</span>
+          <span class="pill">NumPy</span><span class="pill">Pandas</span><span class="pill">scikit-learn</span>
+          <span class="pill">PyTorch</span><span class="pill">XGBoost</span><span class="pill">PySpark</span>
+          <span class="pill">statsmodels</span><span class="pill">networkx</span><span class="pill">streamlit</span>
         </div>
       </div>
-
-      <div class="projects">
-        <div class="carousel-wrapper">
-          <span id="item-1"></span>
-          <span id="item-2"></span>
-          <span id="item-3"></span>
-          <div class="carousel-item item-1">
-            <!-- <h2>Item 1</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              accumsan pretium dolor vel convallis. Aliquam erat volutpat.
-              Maecenas lacus nunc, imperdiet sed mi et, finibus suscipit mi.
-            </p> -->
-            <a class="arrow arrow-prev" href="#item-3"></a>
-            <a class="arrow arrow-next" href="#item-2"></a>
-          </div>
-
-          <div class="carousel-item item-2">
-            <a class="arrow arrow-prev" href="#item-1"></a>
-            <a class="arrow arrow-next" href="#item-3"></a>
-          </div>
-
-          <div class="carousel-item item-3">
-            <a class="arrow arrow-prev" href="#item-2"></a>
-            <a class="arrow arrow-next" href="#item-1"></a>
-          </div>
+      <div class="skill-category">
+        <div class="skill-cat-label">ML & Analytics</div>
+        <div class="skill-pills">
+          <span class="pill">Regression</span><span class="pill">Random Forests</span><span class="pill">Gradient Boosting</span>
+          <span class="pill">Deep Learning</span><span class="pill">NLP</span><span class="pill">Time Series</span>
+          <span class="pill">Causal Inference</span><span class="pill">A/B Testing</span><span class="pill">PCA</span>
+          <span class="pill">LLMs</span><span class="pill">RAG</span><span class="pill">AI Agents</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-label">Cloud & Infrastructure</div>
+        <div class="skill-pills">
+          <span class="pill">AWS (EMR, EC2, S3, SageMaker)</span>
+          <span class="pill">GCP (BigQuery, Vertex AI)</span>
+          <span class="pill">Azure Databricks</span>
+          <span class="pill">Tableau</span><span class="pill">Git</span>
         </div>
       </div>
     </div>
-    <div class="mobile-display">
-      <div id="mobile-sidebar">
-        <h1>hannah</h1>
-        <h2>b. y. lyon</h2>
-        <div id="mobile-profile-img">
-          <img src="img/profile.png" alt="profile photo" />
-        </div>
-        <div id="mobile-description">
-          <p>
-            hannah is a data scientist with hands on experience with ML building
-            recommender systems and marketing attribution models for retail and
-            e-commerce as well as experience in Python, SQL, AWS, Azure, and GCP
-          </p>
-        </div>
-        <div id="mobile-links">
-          <a
-            href="https://docs.google.com/document/d/1dmii4hWjByl2WE1flChnjziAegNz41TyCTgjHfgr6Dw/edit?usp=sharing"
-            >resumé</a
-          >
-          <br />
-          <a href="mailto:hbylyon1@gmail.com">email</a> <br />
-          <a href="https://www.linkedin.com/in/hannahbylyon/">linkedin</a>
-          <br />
-          <a href="https://github.com/hannahlyon">github</a>
-        </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">02 — Selected Work</div>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ml">ML / AI</button>
+      <button class="filter-btn" data-filter="nlp">NLP</button>
+      <button class="filter-btn" data-filter="viz">Viz</button>
+      <button class="filter-btn" data-filter="pipeline">Pipeline</button>
+    </div>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <!-- Project 1 -->
+    <article class="project-card reveal" data-tags="ml" data-project="0">
+      <div class="proj-num">001</div>
+      <div class="proj-tag-list"><span class="proj-tag">ML</span><span class="proj-tag">Causal Inference</span></div>
+      <h3 class="proj-title">Platform Adoption Model</h3>
+      <p class="proj-desc">ML and causal inference models that drove 5–10% regional adoption rate increases for an online B2B platform.</p>
+      <div class="proj-footer">
+        <span class="proj-meta">2024 · The Chefs' Warehouse</span>
+        <span class="proj-arrow">↗</span>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project-card reveal reveal-delay-1" data-tags="ml pipeline" data-project="1">
+      <div class="proj-num">002</div>
+      <div class="proj-tag-list"><span class="proj-tag">ML</span><span class="proj-tag">Pipeline</span></div>
+      <h3 class="proj-title">Customer Segmentation & MDM</h3>
+      <p class="proj-desc">Improved dataset quality by 20% by contributing to data modeling, MDM, and ETL pipelines powering downstream feature engineering and segmentation.</p>
+      <div class="proj-footer">
+        <span class="proj-meta">2024 · The Chefs' Warehouse</span>
+        <span class="proj-arrow">↗</span>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project-card reveal reveal-delay-2" data-tags="ml viz" data-project="2">
+      <div class="proj-num">003</div>
+      <div class="proj-tag-list"><span class="proj-tag">ML</span><span class="proj-tag">Viz</span></div>
+      <h3 class="proj-title">Sales Forecasting Dashboard</h3>
+      <p class="proj-desc">Facebook Prophet model forecasting monthly store sales for the next half-year, surfaced in an interactive portfolio dashboard.</p>
+      <div class="proj-footer">
+        <span class="proj-meta">2022–2023 · Dataracy</span>
+        <span class="proj-arrow">↗</span>
+      </div>
+    </article>
+
+    <!-- Project 4 -->
+    <article class="project-card reveal" data-tags="nlp" data-project="3">
+      <div class="proj-num">004</div>
+      <div class="proj-tag-list"><span class="proj-tag">NLP</span><span class="proj-tag">Python</span></div>
+      <h3 class="proj-title">Fuzzy Matching & Auto-Labeler</h3>
+      <p class="proj-desc">NLP-powered fuzzy matching tool using TF-IDF that eliminated hours of manual data labeling for recurring ingestion workflows.</p>
+      <div class="proj-footer">
+        <span class="proj-meta">2022–2023 · Dataracy</span>
+        <span class="proj-arrow">↗</span>
+      </div>
+    </article>
+
+    <!-- Project 5 -->
+    <article class="project-card reveal reveal-delay-1" data-tags="ml" data-project="4">
+      <div class="proj-num">005</div>
+      <div class="proj-tag-list"><span class="proj-tag">ML</span><span class="proj-tag">Graph</span></div>
+      <h3 class="proj-title">Product Recommendation Engine</h3>
+      <p class="proj-desc">Graph-based collaborative filtering model that spearheaded two personalization initiatives on QVC's e-commerce platform, boosting conversion by 2%.</p>
+      <div class="proj-footer">
+        <span class="proj-meta">2020–2021 · QVC</span>
+        <span class="proj-arrow">↗</span>
+      </div>
+    </article>
+
+    <!-- Project 6 -->
+    <article class="project-card reveal reveal-delay-2" data-tags="ml viz" data-project="5">
+      <div class="proj-num">006</div>
+      <div class="proj-tag-list"><span class="proj-tag">ML</span><span class="proj-tag">Attribution</span></div>
+      <h3 class="proj-title">Marketing Attribution Model</h3>
+      <p class="proj-desc">Data-driven attribution model that saved 15% of marketing spend at Cuyana, paired with a SQL/Tableau dashboard tracking daily payment method behavior.</p>
+      <div class="proj-footer">
+        <span class="proj-meta">2019–2020 · Cuyana</span>
+        <span class="proj-arrow">↗</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">03 — Get In Touch</div>
+      <h2 class="section-title">Contact</h2>
+    </div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <p>Have a project, collaboration, or just want to talk data? I'm always open to interesting conversations.</p>
+      <div class="contact-links">
+        <a href="/cdn-cgi/l/email-protection#ea82889386938584dbaa8d878b8386c4898587" class="contact-link">
+          <div class="contact-link-icon">@</div>
+          <span class="__cf_email__" data-cfemail="b9d1dbc0d5c0d6d788f9ded4d8d0d597dad6d4">[email&#160;protected]</span>
+        </a>
+        <a href="https://www.linkedin.com/in/hannahbylyon/" class="contact-link" target="_blank" rel="noopener">
+          <div class="contact-link-icon">in</div>
+          linkedin.com/in/hannahbylyon
+        </a>
+        <a href="https://hbyl.dev" class="contact-link" target="_blank" rel="noopener">
+          <div class="contact-link-icon">↗</div>
+          hbyl.dev
+        </a>
       </div>
     </div>
-  </body>
+    <div class="contact-right reveal reveal-delay-1">
+      <form id="contact-form">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Hannah Lyon<span> / AI-Native Data Scientist</span></span>
+  <span class="footer-copy" style="color:var(--fg3);">Built with precision.</span>
+</footer>
+
+<!-- ─── PROJECT DATA ──────────────────────────────────────────── -->
+<script>
+// ─── SVG PLACEHOLDER GENERATORS ─────────────────────────────────
+// Each returns an SVG string themed to the project type.
+// Replace src="" on <img> tags with real screenshot paths when ready.
+
+function svgScatter(seed) {
+  const pts = Array.from({length: 60}, (_,i) => {
+    const x = 40 + ((seed*37+i*73)%1)*(820) | (Math.sin(i*seed*.7)*60+Math.cos(i*.3)*40);
+    const y = 30 + ((seed*13+i*41)%1)*(220) | (Math.cos(i*seed*.5)*50+Math.sin(i*.4)*30);
+    const xv = 40 + ((seed*37*i + i*73*seed) % 820);
+    const yv = 30 + ((seed*13*i + i*41*seed) % 220);
+    const r = 3 + (i % 5);
+    const aqua = i % 7 === 0;
+    return `<circle cx="${xv}" cy="${yv}" r="${r}" fill="${aqua ? '#00FFD1' : 'none'}" stroke="${aqua ? '#00FFD1' : '#444'}" stroke-width="1" opacity="${aqua ? '.9' : '.5'}"/>`;
+  });
+  const lines = Array.from({length: 3}, (_,i) => {
+    const x1 = 40 + i*300; const y1 = 260 - i*40;
+    return `<line x1="${x1}" y1="${y1}" x2="${x1+280}" y2="${y1-60}" stroke="#00FFD1" stroke-width="1" opacity=".25" stroke-dasharray="4 4"/>`;
+  });
+  return `<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="900" height="280" fill="#0d0d0d"/>
+    <line x1="40" y1="260" x2="860" y2="260" stroke="#333" stroke-width="1"/>
+    <line x1="40" y1="30" x2="40" y2="260" stroke="#333" stroke-width="1"/>
+    ${Array.from({length:8},(_,i)=>`<line x1="${40+i*103}" y1="260" x2="${40+i*103}" y2="265" stroke="#444" stroke-width="1"/><text x="${40+i*103}" y="278" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">${i*10}</text>`).join('')}
+    ${Array.from({length:5},(_,i)=>`<line x1="35" y1="${260-i*55}" x2="860" y2="${260-i*55}" stroke="#1e1e1e" stroke-width="1"/><text x="30" y="${264-i*55}" text-anchor="end" font-family="monospace" font-size="9" fill="#555">${i*25}</text>`).join('')}
+    ${lines.join('')}
+    ${pts.join('')}
+    <text x="450" y="20" text-anchor="middle" font-family="monospace" font-size="10" fill="#555" letter-spacing="2">FEATURE DISTRIBUTION PLOT</text>
+  </svg>`;
+}
+
+function svgBarChart(seed) {
+  const bars = Array.from({length: 12}, (_,i) => {
+    const h = 30 + ((seed * 17 + i * 43 + i*i*7) % 180);
+    const aqua = i === 4 || i === 9;
+    return `<rect x="${60+i*66}" y="${240-h}" width="44" height="${h}" fill="${aqua ? '#00FFD1' : '#222'}" stroke="${aqua ? '#00FFD1' : '#333'}" stroke-width="1" opacity="${aqua ? '1' : '.8'}"/>
+    <text x="${82+i*66}" y="258" text-anchor="middle" font-family="monospace" font-size="8" fill="#444">${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i]}</text>`;
+  });
+  return `<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="900" height="280" fill="#0d0d0d"/>
+    ${Array.from({length:5},(_,i)=>`<line x1="50" y1="${240-i*45}" x2="860" y2="${240-i*45}" stroke="#1a1a1a" stroke-width="1"/><text x="42" y="${244-i*45}" text-anchor="end" font-family="monospace" font-size="9" fill="#444">${i*25}%</text>`).join('')}
+    ${bars.join('')}
+    <line x1="50" y1="240" x2="870" y2="240" stroke="#333" stroke-width="1"/>
+    <text x="450" y="18" text-anchor="middle" font-family="monospace" font-size="10" fill="#555" letter-spacing="2">MONTHLY PERFORMANCE METRICS</text>
+  </svg>`;
+}
+
+function svgHeatmap(seed) {
+  const cols = 16, rows = 8;
+  const cells = [];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const v = ((seed*7 + r*31 + c*13 + r*c*seed) % 100) / 100;
+      const alpha = (.05 + v * .95).toFixed(2);
+      const isHot = v > .75;
+      cells.push(`<rect x="${50+c*52}" y="${30+r*27}" width="50" height="25" fill="${isHot ? '#00FFD1' : '#e0e0e0'}" opacity="${isHot ? alpha : (v*.3).toFixed(2)}" rx="1"/>`);
+    }
+  }
+  return `<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="900" height="280" fill="#0d0d0d"/>
+    ${cells.join('')}
+    <text x="450" y="18" text-anchor="middle" font-family="monospace" font-size="10" fill="#555" letter-spacing="2">CORRELATION HEATMAP</text>
+    <defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0%" stop-color="#111"/><stop offset="100%" stop-color="#00FFD1"/></linearGradient></defs>
+    <rect x="680" y="250" width="160" height="10" fill="url(#hg)" rx="2"/>
+    <text x="678" y="272" font-family="monospace" font-size="8" fill="#444">Low</text>
+    <text x="840" y="272" font-family="monospace" font-size="8" fill="#00FFD1">High</text>
+  </svg>`;
+}
+
+function svgNetwork(seed) {
+  const nodes = Array.from({length:10},(_,i)=>({
+    x: 80 + ((seed*23+i*137)%760), y: 40+((seed*11+i*97)%200), r: 6+i%4
+  }));
+  const edges = [];
+  for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++) {
+    if((seed*i*j)%5===0) edges.push(`<line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[j].x}" y2="${nodes[j].y}" stroke="#00FFD1" stroke-width="1" opacity=".15"/>`);
+  }
+  return `<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="900" height="280" fill="#0d0d0d"/>
+    ${Array.from({length:20},(_,i)=>`<line x1="${i*47}" y1="0" x2="${i*47}" y2="280" stroke="#0f0f0f" stroke-width="1"/>`).join('')}
+    ${Array.from({length:10},(_,i)=>`<line x1="0" y1="${i*31}" x2="900" y2="${i*31}" stroke="#0f0f0f" stroke-width="1"/>`).join('')}
+    ${edges.join('')}
+    ${nodes.map((n,i)=>`<circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${i%3===0?'#00FFD1':'none'}" stroke="${i%3===0?'#00FFD1':'#444'}" stroke-width="1.5" opacity="${i%3===0?.9:.6}"/>
+    ${i%3===0?`<circle cx="${n.x}" cy="${n.y}" r="${n.r+8}" fill="none" stroke="#00FFD1" stroke-width=".5" opacity=".2"/>`:''}` ).join('')}
+    <text x="450" y="268" text-anchor="middle" font-family="monospace" font-size="10" fill="#555" letter-spacing="2">MODEL ARCHITECTURE GRAPH</text>
+  </svg>`;
+}
+
+function svgTimeline(seed) {
+  const pts = Array.from({length: 40}, (_,i) => {
+    const x = 60 + i * 21;
+    const y = 140 + Math.sin(i*.4+seed) * 60 + Math.cos(i*.7) * 30;
+    return { x, y };
+  });
+  const path = `M ${pts.map(p=>`${p.x},${p.y}`).join(' L ')}`;
+  const area = `M 60,240 L ${pts.map(p=>`${p.x},${p.y}`).join(' L ')} L ${pts[pts.length-1].x},240 Z`;
+  return `<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="900" height="280" fill="#0d0d0d"/>
+    <defs><linearGradient id="ag${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00FFD1" stop-opacity=".18"/><stop offset="100%" stop-color="#00FFD1" stop-opacity="0"/></linearGradient></defs>
+    ${Array.from({length:6},(_,i)=>`<line x1="60" y1="${60+i*37}" x2="890" y2="${60+i*37}" stroke="#1a1a1a" stroke-width="1"/>`).join('')}
+    <path d="${area}" fill="url(#ag${seed})"/>
+    <path d="${path}" fill="none" stroke="#00FFD1" stroke-width="2" stroke-linejoin="round"/>
+    ${pts.filter((_,i)=>i%8===0).map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#00FFD1" opacity=".9"/><circle cx="${p.x}" cy="${p.y}" r="8" fill="none" stroke="#00FFD1" opacity=".25" stroke-width="1"/>`).join('')}
+    <line x1="60" y1="240" x2="890" y2="240" stroke="#333" stroke-width="1"/>
+    <text x="450" y="20" text-anchor="middle" font-family="monospace" font-size="10" fill="#555" letter-spacing="2">TIME-SERIES ANALYSIS</text>
+  </svg>`;
+}
+
+function svgPipeline(seed) {
+  const steps = ['INGEST','VALIDATE','TRANSFORM','AGGREGATE','LOAD','MONITOR'];
+  const boxes = steps.map((s,i)=>{
+    const x = 50 + i*140; const y = 100;
+    const active = i === 2 || i === 4;
+    return `<rect x="${x}" y="${y}" width="110" height="60" fill="${active?'#00FFD1':'none'}" stroke="${active?'#00FFD1':'#333'}" stroke-width="1" rx="2"/>
+    <text x="${x+55}" y="${y+28}" text-anchor="middle" font-family="monospace" font-size="8" fill="${active?'#000':'#555'}" letter-spacing="1">${s}</text>
+    <text x="${x+55}" y="${y+45}" text-anchor="middle" font-family="monospace" font-size="7" fill="${active?'#000':'#444'}">●●●</text>
+    ${i<steps.length-1?`<line x1="${x+110}" y1="${y+30}" x2="${x+140}" y2="${y+30}" stroke="${active?'#00FFD1':'#333'}" stroke-width="1"/><polygon points="${x+138},${y+26} ${x+145},${y+30} ${x+138},${y+34}" fill="${active?'#00FFD1':'#333'}"/>`:''}`;
+  });
+  return `<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="900" height="280" fill="#0d0d0d"/>
+    ${Array.from({length:30},(_,i)=>`<line x1="${i*31}" y1="0" x2="${i*31}" y2="280" stroke="#0c0c0c" stroke-width="1"/>`).join('')}
+    ${boxes.join('')}
+    <text x="450" y="50" text-anchor="middle" font-family="monospace" font-size="10" fill="#555" letter-spacing="2">DATA PIPELINE ARCHITECTURE</text>
+    <text x="450" y="230" text-anchor="middle" font-family="monospace" font-size="9" fill="#333">EXECUTION FLOW — STAGE 3 &amp; 5 HIGHLIGHTED</text>
+  </svg>`;
+}
+
+// Per-project image data: hero + gallery thumbnails
+// Replace svgXxx() calls with <img src="your-screenshot.png"> when ready
+const PROJECT_IMAGES = [
+  {
+    heroCap: "Causal model — regional adoption lift",
+    hero: () => svgScatter(3),
+    thumbs: [
+      { svg: () => svgBarChart(7),   cap: "Adoption rate by region" },
+      { svg: () => svgTimeline(5),   cap: "Lift over intervention period" },
+      { svg: () => svgHeatmap(2),    cap: "Feature importance heatmap" },
+    ]
+  },
+  {
+    heroCap: "MDM entity resolution pipeline",
+    hero: () => svgPipeline(1),
+    thumbs: [
+      { svg: () => svgBarChart(4),   cap: "Data quality scores before / after" },
+      { svg: () => svgHeatmap(9),    cap: "Customer segment distribution" },
+      { svg: () => svgTimeline(6),   cap: "Pipeline throughput over time" },
+    ]
+  },
+  {
+    heroCap: "Prophet forecast — 6-month horizon",
+    hero: () => svgTimeline(2),
+    thumbs: [
+      { svg: () => svgBarChart(3),   cap: "Monthly store sales by region" },
+      { svg: () => svgScatter(8),    cap: "Forecast vs. actuals scatter" },
+      { svg: () => svgHeatmap(5),    cap: "Seasonality decomposition" },
+    ]
+  },
+  {
+    heroCap: "TF-IDF similarity scoring output",
+    hero: () => svgHeatmap(7),
+    thumbs: [
+      { svg: () => svgScatter(4),    cap: "Match confidence distribution" },
+      { svg: () => svgBarChart(9),   cap: "Auto-labeled vs. manual review rate" },
+      { svg: () => svgTimeline(3),   cap: "Time saved per pipeline run" },
+    ]
+  },
+  {
+    heroCap: "Customer-product interaction graph",
+    hero: () => svgNetwork(6),
+    thumbs: [
+      { svg: () => svgBarChart(6),   cap: "Conversion lift — A/B test results" },
+      { svg: () => svgScatter(2),    cap: "User affinity score distribution" },
+      { svg: () => svgTimeline(8),   cap: "Recommendation click-through over time" },
+    ]
+  },
+  {
+    heroCap: "Multi-touch attribution journey map",
+    hero: () => svgBarChart(11),
+    thumbs: [
+      { svg: () => svgTimeline(9),   cap: "Marketing spend reallocation over time" },
+      { svg: () => svgHeatmap(3),    cap: "Channel contribution heatmap" },
+      { svg: () => svgScatter(6),    cap: "Repeat purchase prediction curve" },
+    ]
+  },
+];
+
+const PROJECTS = [
+  {
+    num: "001",
+    title: "Platform Adoption Model",
+    tags: ["ML", "Causal Inference", "Python", "Scikit-learn"],
+    year: "2024", industry: "The Chefs' Warehouse",
+    summary: "Applied ML and causal inference techniques to analyze adoption patterns across an online B2B platform, surfacing actionable regional insights that drove measurable increases in user engagement.",
+    challenge: "Regional adoption of the company's online platform was uneven and poorly understood. Leadership needed to know not just where adoption was low, but why — and what interventions would actually move the needle.",
+    approach: [
+      "Built causal inference models to isolate the true lift of specific platform features and outreach campaigns from confounding factors.",
+      "Developed ML classifiers to identify accounts at risk of low adoption and surface leading indicators for the sales team.",
+      "Collaborated cross-functionally with product and regional managers to translate model outputs into concrete recommendations.",
+      "Delivered findings via interactive dashboards and exec-ready presentations tied directly to regional KPIs."
+    ],
+    metrics: [{ val: "5–10%", lbl: "Adoption Rate Lift" }, { val: "Regional", lbl: "Targeting Precision" }, { val: "2024", lbl: "Deployed" }],
+    github: null, demo: null,
+  },
+  {
+    num: "002",
+    title: "Customer Segmentation & MDM",
+    tags: ["ML", "Pipeline", "ETL", "Feature Engineering"],
+    year: "2024", industry: "The Chefs' Warehouse",
+    summary: "Improved dataset quality by 20% through contributions to data modeling, master data management (MDM), and ETL pipelines — laying the foundation for downstream analytics including customer segmentation and feature engineering.",
+    challenge: "Downstream analytics use cases were bottlenecked by inconsistent, low-quality source data spread across multiple systems with conflicting entity definitions. No single source of truth existed for customer records.",
+    approach: [
+      "Audited existing data sources and documented quality gaps, duplicates, and schema inconsistencies across CRM and transactional systems.",
+      "Contributed to MDM strategy to standardize customer entity resolution and deduplication logic.",
+      "Built and maintained ETL pipelines feeding cleaned data into feature engineering workflows and segmentation analyses.",
+      "Established data quality monitoring checks to catch regressions before they propagated downstream."
+    ],
+    metrics: [{ val: "20%", lbl: "Data Quality Improvement" }, { val: "Multi-source", lbl: "MDM Coverage" }, { val: "2024", lbl: "Shipped" }],
+    github: null, demo: null,
+  },
+  {
+    num: "003",
+    title: "Sales Forecasting Dashboard",
+    tags: ["ML", "Time Series", "Viz", "Prophet"],
+    year: "2022–2023", industry: "Dataracy",
+    summary: "Built a Facebook Prophet forecasting model predicting monthly store sales for the next half-year, embedded in a live dashboard used as a flagship case study in the company's client portfolio.",
+    challenge: "Clients needed forward-looking visibility into store revenue to plan inventory, staffing, and promotions — but existing reporting was purely backward-looking. The solution had to be interpretable enough for non-technical stakeholders.",
+    approach: [
+      "Selected Facebook Prophet for its handling of seasonality, holidays, and trend changepoints without requiring heavy manual tuning.",
+      "Engineered relevant regressors including promotional calendars, regional event data, and lagged sales signals.",
+      "Designed a Streamlit dashboard surfacing forecast intervals, trend decomposition, and confidence bands interactively.",
+      "Packaged the solution as a reusable template that Dataracy could deploy across multiple client verticals."
+    ],
+    metrics: [{ val: "6-Month", lbl: "Forecast Horizon" }, { val: "Portfolio", lbl: "Featured Case Study" }, { val: "Multi-client", lbl: "Reusable Template" }],
+    github: null, demo: null,
+  },
+  {
+    num: "004",
+    title: "Fuzzy Matching & Auto-Labeler",
+    tags: ["NLP", "TF-IDF", "Python", "Automation"],
+    year: "2022–2023", industry: "Dataracy",
+    summary: "Built an NLP-powered fuzzy matching tool using TF-IDF that automated the tedious process of manual data labeling, saving significant engineering hours across recurring data ingestion workflows.",
+    challenge: "Recurring data pipelines required matching and labeling records across datasets with inconsistent naming conventions, abbreviations, and typos. Manual labeling was slow, error-prone, and didn't scale with client volume.",
+    approach: [
+      "Implemented TF-IDF vectorization with cosine similarity scoring to match records across heterogeneous datasets without requiring exact string matches.",
+      "Built a configurable threshold system allowing tuning between precision and recall depending on use-case sensitivity.",
+      "Added an uncertainty layer that flagged low-confidence matches for lightweight human review rather than full manual labeling.",
+      "Integrated the tool into existing ETL pipelines so it ran automatically at ingestion time with zero additional manual steps."
+    ],
+    metrics: [{ val: "Hours", lbl: "Saved Per Run" }, { val: "TF-IDF", lbl: "NLP Backbone" }, { val: "Automated", lbl: "Label Pipeline" }],
+    github: null, demo: null,
+  },
+  {
+    num: "005",
+    title: "Product Recommendation Engine",
+    tags: ["ML", "Graph", "Collaborative Filtering", "E-commerce"],
+    year: "2020–2021", industry: "QVC",
+    summary: "Led development of a graph-based collaborative filtering recommendation model that underpinned two major personalization initiatives on QVC's e-commerce platform, boosting product conversion rate by 2%.",
+    challenge: "QVC's product catalog spanned tens of thousands of SKUs with highly varied customer purchase behavior. Off-the-shelf recommendation approaches failed to capture the nuanced viewing and purchase patterns unique to the live shopping context.",
+    approach: [
+      "Designed a graph-based architecture using networkx to model customer-product interaction networks, capturing indirect affinity signals.",
+      "Applied collaborative filtering on top of the graph representation to generate personalized ranked recommendations at scale.",
+      "Conducted rigorous A/B testing to measure lift in click-through and conversion rates before full rollout.",
+      "Worked with cross-functional stakeholders in product and engineering to integrate recommendations into the live site experience."
+    ],
+    metrics: [{ val: "2%", lbl: "Conversion Rate Lift" }, { val: "2", lbl: "Strategic Initiatives" }, { val: "Graph-based", lbl: "Architecture" }],
+    github: null, demo: null,
+  },
+  {
+    num: "006",
+    title: "Marketing Attribution Model",
+    tags: ["ML", "Attribution", "SQL", "Tableau"],
+    year: "2019–2020", industry: "Cuyana",
+    summary: "Developed a data-driven marketing attribution model that saved 15% of marketing spend at Cuyana, alongside a SQL/Tableau dashboard for daily payment method analysis and a 0.97-accuracy neural network predicting repeat customer behavior.",
+    challenge: "Cuyana's marketing team was allocating budget based on last-touch attribution, which systematically undervalued upper-funnel channels and led to inefficient spend. Leadership needed a more accurate picture of what was actually driving conversions.",
+    approach: [
+      "Built a multi-touch attribution model assigning fractional credit across the customer journey based on observed conversion paths.",
+      "Developed a neural network achieving 0.97 accuracy predicting repeat purchase behavior, enabling proactive retention targeting.",
+      "Created a SQL and Tableau dashboard tracking payment method adoption on a daily basis to surface emerging trends for finance and ops.",
+      "Partnered with the marketing team to translate model outputs into concrete channel reallocation recommendations."
+    ],
+    metrics: [{ val: "15%", lbl: "Marketing Spend Saved" }, { val: "0.97", lbl: "Repeat Purchase Accuracy" }, { val: "Daily", lbl: "Dashboard Cadence" }],
+    github: null, demo: null,
+  },
+];
+
+// ─── CURSOR ─────────────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let cx = 0, cy = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+function animCursor() {
+  cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+  rx += (cx - rx) * .14; ry += (cy - ry) * .14;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a,button,.project-card,.pill').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+// ─── NAV SCROLL ─────────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ─── THEME TOGGLE ───────────────────────────────────────────────
+document.getElementById('theme-btn').addEventListener('click', () => {
+  const html = document.documentElement;
+  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+});
+
+// ─── REVEAL ON SCROLL ───────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── PROJECT FILTER ─────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card => {
+      const tags = card.dataset.tags;
+      const show = f === 'all' || tags.includes(f);
+      card.hidden = !show;
+    });
+  });
+});
+
+// ─── MODAL ──────────────────────────────────────────────────────
+const overlay = document.getElementById('modal-overlay');
+const modalContent = document.getElementById('modal-content');
+
+function openModal(idx) {
+  const p = PROJECTS[idx];
+  const imgs = PROJECT_IMAGES[idx];
+
+  // Build gallery thumbs HTML
+  const thumbsHTML = imgs.thumbs.map(t => `
+    <div class="gallery-thumb">
+      ${t.svg()}
+      <div class="gallery-thumb-caption">${t.cap}</div>
+    </div>
+  `).join('');
+
+  // Inject: hero image sits ABOVE modal-body, gallery strip after challenge
+  modalContent.innerHTML = `
+    <div class="modal-hero-img">
+      ${imgs.hero()}
+      <div class="modal-hero-badge">${imgs.heroCap}</div>
+    </div>
+
+    <div style="padding:2.5rem 2.5rem 0;">
+      <div class="modal-tag-list">${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
+      <h2 class="modal-title">${p.title}</h2>
+      <p class="modal-subtitle">${p.summary}</p>
+    </div>
+
+    <div style="padding:0 2.5rem;">
+      <div class="modal-divider"></div>
+      <div class="modal-section-label">The Challenge</div>
+      <p style="font-size:.95rem;line-height:1.8;color:var(--fg2);margin-bottom:1rem;">${p.challenge}</p>
+    </div>
+
+    <div class="modal-section-label" style="padding:.75rem 2.5rem .5rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--aqua);">Visual Reference</div>
+    <div class="modal-gallery-strip">${thumbsHTML}</div>
+    <div class="gallery-scroll-hint">Drag to scroll · ${imgs.thumbs.length} images</div>
+
+    <div style="padding:0 2.5rem 2.5rem;">
+      <div class="modal-divider"></div>
+      <div class="modal-section-label">Approach</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem;">
+        ${p.approach.map(a => `<li style="display:flex;gap:.85rem;font-size:.92rem;color:var(--fg2);line-height:1.6;"><span style="color:var(--aqua);font-family:'DM Mono',monospace;flex-shrink:0;">→</span>${a}</li>`).join('')}
+      </ul>
+      <div class="modal-divider"></div>
+      <div class="modal-section-label">Key Metrics</div>
+      <div class="modal-metrics">
+        ${p.metrics.map(m => `<div class="metric-box"><span class="metric-val">${m.val}</span><span class="metric-lbl">${m.lbl}</span></div>`).join('')}
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;">
+        ${p.github ? `<a class="modal-link" href="${p.github}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}
+        ${p.demo ? `<a class="modal-link" href="${p.demo}" target="_blank" rel="noopener">Live Demo ↗</a>` : ''}
+      </div>
+      <div style="margin-top:1rem;">
+        <span style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--fg3);">${p.year} · ${p.industry} · ${p.num}</span>
+      </div>
+    </div>
+  `;
+
+  // Re-apply cursor hover to new modal elements
+  modalContent.querySelectorAll('a,button,.gallery-thumb').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Scroll modal back to top on open
+  document.getElementById('modal').scrollTop = 0;
+}
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', () => openModal(+card.dataset.project));
+});
+document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ─── CONTACT FORM ────────────────────────────────────────────────
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sent ✓';
+  btn.style.background = 'transparent';
+  btn.style.color = 'var(--aqua)';
+  btn.style.border = '1px solid var(--aqua)';
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.style.background = ''; btn.style.color = ''; btn.style.border = '';
+    e.target.reset();
+  }, 3000);
+});
+</script>
+</body>
 </html>
