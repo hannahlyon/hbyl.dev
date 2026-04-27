@@ -437,7 +437,7 @@
 
       <!-- Quotes -->
       <div class="human-text-block">
-        <p class="human-quote">I'm human. I have taste. I have emotions. Proof of taste: my tumblr at 16 years old.</p>
+        <p class="human-quote">I'm human. I have taste. I have emotions. Proof of both: my tumblr at 16 years old.</p>
         <p class="human-aside">Since then, my taste has definitely improved. Or, I at least use Pinterest now</p>
       </div>
 
@@ -690,6 +690,19 @@
     });
 
     // ─── Init ─────────────────────────────────────────────────────
+    // Measure actual rendered text widths so bottom-alignment is pixel-accurate
+    // regardless of font differences (Inter vs Outfit) or viewport size.
+    function measureAndRender() {
+      LABELS.forEach(cfg => {
+        const span = document.getElementById(cfg.id).querySelector('span');
+        const w = span.offsetWidth;
+        if (w > 0) cfg.h = w;
+      });
+      render(locked);
+    }
+
+    document.fonts.ready.then(measureAndRender);
+    window.addEventListener('resize', measureAndRender);
     render(null);
   </script>
 </body>
