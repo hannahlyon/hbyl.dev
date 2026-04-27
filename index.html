@@ -270,6 +270,10 @@
     /* ── Human section ───────────────────────────────── */
     #panel-human {
       padding: 40px;
+    }
+
+    /* Override display:block with flex only when active (ID+class beats class+class) */
+    #panel-human.active {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -627,7 +631,7 @@
     function positionLabel(cfg, leftOffset) {
       const el = document.getElementById(cfg.id);
       el.style.left   = off(leftOffset);
-      el.style.top    = `calc(100% - ${cfg.h}px)`;
+      el.style.top    = `calc(100% - ${cfg.h}px - 32px)`;
       el.style.width  = `${cfg.w}px`;
       el.style.height = `${cfg.h}px`;
     }
