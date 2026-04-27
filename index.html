@@ -618,9 +618,7 @@
     const contentPanel = document.getElementById('content-panel');
 
     // ─── State ────────────────────────────────────────────────────
-    let locked      = null; // section key locked by click
-    let hovered     = null;
-    let leaveTimer  = null;
+    let locked      = null;
     let revealTimer = null;
 
     // ─── Helpers ──────────────────────────────────────────────────
@@ -682,36 +680,14 @@
     }
 
     // ─── Events ───────────────────────────────────────────────────
-    function scheduleLeave() {
-      leaveTimer = setTimeout(() => {
-        if (!hovered) render(locked);
-      }, 160);
-    }
-
     LABELS.forEach(cfg => {
       const el = document.getElementById(cfg.id);
 
-      el.addEventListener('mouseenter', () => {
-        clearTimeout(leaveTimer);
-        hovered = cfg.key;
-        render(cfg.key);
-      });
-
-      el.addEventListener('mouseleave', () => {
-        hovered = null;
-        scheduleLeave();
-      });
-
       el.addEventListener('click', () => {
-        // Toggle lock; Accomplishments click = clear lock (return to landing)
         locked = (locked === cfg.key || cfg.key === 'accomplishments') ? null : cfg.key;
-        render(hovered || locked);
+        render(locked);
       });
     });
-
-    // Keep state alive when cursor is in the content panel
-    contentPanel.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
-    contentPanel.addEventListener('mouseleave', scheduleLeave);
 
     // ─── Init ─────────────────────────────────────────────────────
     render(null);
